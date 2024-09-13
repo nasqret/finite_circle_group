@@ -24,14 +24,13 @@ else:
 
 # Generate all pairs (x, y) satisfying x^2 + y^2 ≡ 1 mod p
 #points = []
-points = [(0,1),(0,p-1)]
+points = [(0,1),(0,p-1),(1,0),(p-1,0)]
 F=GF(p)
-for x in range(1,p):
+for x in range(2,p):
     y=F.exsqrt(1-x**2)
-    if y:
+    if not (y==None):
         points.append((x, int(y)))
         points.append((x, int(-y)))
-print(points)
 #sanity check
 if p%4==1:
     assert len(points)==p-1
