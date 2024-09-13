@@ -9,7 +9,7 @@ st.subheader("List the pairs $(x,y)\in\mathbb{F}_{p}^2$ such that $x^2+y^2=1$. S
 
 # Slider for selecting prime number p
 
-p = st.select_slider("Select a prime number p (greater than 2):", options = [3,5,7,11,13,17,19,23,29,31,37,41,43,47])
+p = st.select_slider("Select a prime number p (greater than 2):", options = [3,5,7,11,13,17,19,23,29,31,37,41,43,47,53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
 #p = st.slider("Select a prime number p (greater than 2):", min_value=3, max_value=29, step=1)
 
 # Ensure p is prime
