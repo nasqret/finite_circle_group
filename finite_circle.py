@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from sympy import isprime
 from sympy import GF
 
-st.title("Unit Circle over Finite Fields Visualization")
+st.title("Unit Circle over Finite Fields")
+st.subheader("List the pairs $(x,y)\in\mathbb{F}_{p}^2$ such that $x^2+y^2=1$. Select the prime number $p$ and the number of multiples of the least generator to draw.")
 
 # Slider for selecting prime number p
 
