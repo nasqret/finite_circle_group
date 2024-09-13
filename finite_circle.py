@@ -16,7 +16,10 @@ if not isprime(p):
     st.stop()
 
 # Slider for selecting number of multiples to draw
-n_multiples = st.slider("Select the number of multiples to draw:", min_value=1, max_value=50, step=1)
+if p%4==1:
+    n_multiples = st.slider("Select the number of multiples to draw:", min_value=1, max_value=p-1, step=1)
+else:
+    n_multiples = st.slider("Select the number of multiples to draw:", min_value=1, max_value=p+1, step=1)
 
 # Generate all pairs (x, y) satisfying x^2 + y^2 ≡ 1 mod p
 points = []
