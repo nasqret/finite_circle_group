@@ -31,7 +31,7 @@ for x in range(1,p):
     if y:
         points.append((x, int(y)))
         points.append((x, int(-y)))
-
+print(points)
 #sanity check
 if p%4==1:
     assert len(points)==p-1
