@@ -7,7 +7,7 @@ st.title("Unit Circle over Finite Fields Visualization")
 
 # Slider for selecting prime number p
 
-p = st.slider("Select a prime number p (greater than 2):", value = [3,5,7,11,13,17,19,23,29])
+p = st.slider("Select a prime number p (greater than 2):", value = (3,5,7,11,13,17,19,23,29))
 #p = st.slider("Select a prime number p (greater than 2):", min_value=3, max_value=29, step=1)
 
 # Ensure p is prime
