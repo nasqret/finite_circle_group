@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from sympy import isprime
+from sympy import GF
 
 st.title("Unit Circle over Finite Fields Visualization")
 
@@ -22,14 +23,28 @@ else:
     n_multiples = st.slider("Select the number of multiples to draw:", min_value=1, max_value=p+1, step=1)
 
 # Generate all pairs (x, y) satisfying x^2 + y^2 ≡ 1 mod p
-points = []
-for x in range(p):
-    for y in range(p):
-        if (x**2 + y**2) % p == 1 % p:
-            points.append((x, y))
+#points = []
+points = [(0,1),(0,p-1)]
+F=GF(p)
+for x in range(1,p):
+    y=F.exsqrt(x)
+    if y:
+        points.append((x, y))
+        points.append((x, p-y))
 
-# Define complex multiplication modulo p
+#sanity check
+if p%4==1:
+    assert len(points)==p-1
+else:
+    assert len(points)==p+1
+
+# Define "complex" multiplication modulo p
 def complex_mult(a, b):
+    """
+    Multiply two complex numbers a, b modulo p, where a = (x1, y1) and b = (x2, y2).
+    
+    Returns (x, y) such that x ≡ x1*x2 - y1*y2 (mod p) and y ≡ x1*y2 + x2*y1 (mod p).
+    """
     (x1, y1) = a
     (x2, y2) = b
     x = (x1 * x2 - y1 * y2) % p
@@ -38,6 +53,22 @@ def complex_mult(a, b):
 
 # Define function to compute powers of an element
 def compute_powers(g, n):
+    """
+    Compute the first n powers of an element g in the unit circle modulo p, 
+    where the powers are computed using the complex multiplication modulo p.
+    
+    Parameters
+    ----------
+    g : tuple of two integers
+        The element of the unit circle modulo p whose powers are to be computed.
+    n : int
+        The number of powers to compute.
+    
+    Returns
+    -------
+    list of tuples of two integers
+        The first n powers of g in the unit circle modulo p.
+    """
     powers = []
     current = g
     for _ in range(n):
@@ -47,6 +78,19 @@ def compute_powers(g, n):
 
 # Find generators with their orders
 def find_generators(points):
+    """
+    Find all generators of the unit circle modulo p.
+    
+    Parameters
+    ----------
+    points : list of tuples of two integers
+        The points of the unit circle modulo p.
+    
+    Returns
+    -------
+    list of tuples of two integers
+        The generators, each accompanied by their order.
+    """
     generators = []
     identity = (1 % p, 0 % p)
     for g in points:
