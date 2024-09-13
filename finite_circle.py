@@ -27,7 +27,7 @@ else:
 points = [(0,1),(0,p-1)]
 F=GF(p)
 for x in range(1,p):
-    y=F.exsqrt(x)
+    y=F.exsqrt(1-x**2)
     if y:
         points.append((x, int(y)))
         points.append((x, int(-y)))
