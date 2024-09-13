@@ -29,8 +29,8 @@ F=GF(p)
 for x in range(1,p):
     y=F.exsqrt(x)
     if y:
-        points.append((x, y))
-        points.append((x, p-y))
+        points.append((x, int(y)))
+        points.append((x, int(-y)))
 
 #sanity check
 if p%4==1:
